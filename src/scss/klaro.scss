@@ -1,9 +1,9 @@
 $box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 5px 5px 10px 0 rgba(0, 0, 0, 0.19);
 $border-radius: 4px;
-$border-dark: 1px solid #555;
+$border-dark: 1px solid #393d46;
 $font-color-dark: #eee;
 $font-color-dark-deemphasized: #999;
-$bg-dark: #333;
+$bg-dark: #393d46;
 $red2: #B24E14;
 $red1: #BA1E04;
 $yellow1: #F8C200;
@@ -22,7 +22,7 @@ $green3: #01440C;
 
         @import 'switch.scss';
 
-        font-size: 14px;
+        font-size: 1em;
 
         .slider {
             box-shadow: $box-shadow;
