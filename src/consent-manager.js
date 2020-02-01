@@ -170,7 +170,7 @@ export default class ConsentManager {
         const consentCookie = this.klaroStorage.get();
         if (consentCookie !== null){
             //this.consents = JSON.parse(decodeURIComponent(consentCookie.value))
-            this.consents = JSON.parse(decodeURIComponent(consentCookie))
+            this.consents = JSON.parse(consentCookie)
             this._checkConsents()
             this.notify('consents', this.consents)
         }
