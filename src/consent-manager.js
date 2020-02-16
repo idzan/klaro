@@ -2,6 +2,7 @@ import {getCookie, getCookies, setCookie, deleteCookie} from 'utils/cookies'
 
 // from https://git.io/fj5Or
 function browserSupportsLocalStorage() {
+    // eslint-disable-next-line no-var
     var mod = 'klaro-ls-test';
     try {
         localStorage.setItem(mod, mod);
@@ -168,7 +169,8 @@ export default class ConsentManager {
         // const consentCookie = getCookie(this.cookieName)
         const consentCookie = this.klaroStorage.get();
         if (consentCookie !== null){
-            this.consents = JSON.parse(decodeURIComponent(consentCookie.value))
+            //this.consents = JSON.parse(decodeURIComponent(consentCookie.value))
+            this.consents = JSON.parse(consentCookie)
             this._checkConsents()
             this.notify('consents', this.consents)
         }
@@ -181,8 +183,10 @@ export default class ConsentManager {
     }
 
     saveConsents(){
-        const v = encodeURIComponent(JSON.stringify(this.consents))
-        // setCookie(this.cookieName, v, this.config.cookieExpiresAfterDays || 120)
+        if (this.consents === null)
+            this.klaroStorage.delete();
+        const v = JSON.stringify(this.consents)
+        //setCookie(this.cookieName, v, this.config.cookieExpiresAfterDays || 120)
         this.klaroStorage.set(v);
         this.confirmed = true
         this.changed = false
