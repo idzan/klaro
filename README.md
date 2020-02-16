@@ -29,8 +29,20 @@ To use the widget on your website, simply download [klaro.js](https://klaro.kipr
 ```html
 <script defer type="text/javascript" src="config.js"></script>
 <script defer type="text/javascript" src="klaro.js"></script>
+
 ```
 Do not forget to change your existing apps/trackers as outlined in the next section as well so that Klaro can manage them. Klaro will automatically open on page load.
+
+We also provide a version of Klaro without stylesheets included (which is useful
+in case you want to provide your own stylesheet), [klaro-no-css.js](https://klaro.kiprotect.com/klaro-no-css.js). If you use this, make sure to either include
+your own styles or to include [klaro.min.css](https://klaro.kiprotect.com/klaro.min.css) like this:
+
+```html
+<link rel="stylesheet" href="klaro.min.css" />
+```
+
+We also provide a non-minified version of the stylesheet, which is great if you
+want to make edits: [klaro.css](https://klaro.kiprotect.com/klaro.css).
 
 If you wish to open the consent manager manually on user interaction (for example through a link in the privacy policy), you can use the ```klaro.show()``` global. Example:
 ```html
