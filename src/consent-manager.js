@@ -1,4 +1,5 @@
 import {getCookie, getCookies, setCookie, deleteCookie} from 'utils/cookies'
+import stores from 'stores'
 
 // from https://git.io/fj5Or
 function browserSupportsLocalStorage() {
@@ -69,10 +70,23 @@ export default class ConsentManager {
         this.watchers = new Set([])
         this.loadConsents()
         this.applyConsents()
+        this.savedConsents = {...this.consents}
+    }
+
+    get storageMethod(){
+        return this.config.storageMethod || 'cookie'
     }
 
     get cookieName(){
         return this.config.cookieName || 'klaro'
+    }
+
+    get cookieDomain(){
+        return this.config.cookieDomain || undefined
+    }
+
+    get cookieExpiresAfterDays(){
+        return this.config.cookieExpiresAfterDays || 120
     }
 
     watch(watcher){
@@ -117,9 +131,9 @@ export default class ConsentManager {
     }
 
     //don't decline required apps
-    declineAll(){
+    changeAll(value){
         this.config.apps.map((app) => {
-            if(app.required || this.config.required) {
+            if(app.required || this.config.required || value) {
                 this.updateConsent(app.name, true)
             } else {
                 this.updateConsent(app.name, false)
@@ -129,6 +143,11 @@ export default class ConsentManager {
 
     updateConsent(name, value){
         this.consents[name] = value
+        this.notify('consents', this.consents)
+    }
+
+    restoreSavedConsents(){
+        this.consents = {...this.savedConsents}
         this.notify('consents', this.consents)
     }
 
@@ -190,6 +209,7 @@ export default class ConsentManager {
         this.klaroStorage.set(v);
         this.confirmed = true
         this.changed = false
+        this.savedConsents = {...this.consents}
     }
 
     applyConsents(){

@@ -33,6 +33,11 @@ $border-dark: 1px solid #555;
             margin-top: 0.7em;
         }
 
+        .cm-link {
+            padding-left: 4px;
+            vertical-align: middle;
+        }
+
         .cm-btn {
             background: $decline;
             color: $primarydark;
@@ -40,6 +45,10 @@ $border-dark: 1px solid #555;
             padding: 6px 10px;
             margin-right: 0.5em;
             border: 0;
+
+            &:disabled {
+                opacity: 0.5;
+            }
 
             &.cm-btn-sm {
                 padding: 0.4em;
@@ -58,8 +67,13 @@ $border-dark: 1px solid #555;
             &.cm-btn-info {
                 background: $accent;
             }
-        }
 
+            &.cm-btn-right {
+                float: right;
+                margin-left: 0.5em;
+                margin-right: 0;
+            }
+        }
     }
 
     .cookie-modal {
@@ -124,12 +138,26 @@ $border-dark: 1px solid #555;
                 padding: 1em;
                 border-top: $border-dark;
 
-                a.cm-powered-by {
-                    position: absolute;
-                    right: 1em;
-                    color: $primary;
+                &-buttons {
+                    &::before,
+                    &::after {
+                        content: " ";
+                        display: table;
+                    }
+
+                    &::after {
+                        clear: both;
+                    }
+                }
+
+                .cm-powered-by {
                     font-size: 0.8em;
                     padding-top: 4px;
+                    text-align: center;
+
+                    a {
+                        color: $font-color-dark-deemphasized;
+                    }
                 }
             }
 

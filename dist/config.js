@@ -9,6 +9,10 @@ var klaroConfig = {
     // when starting up. If undefined, Klaro will use 'klaro'.
     elementID: 'klaro',
 
+    // How Klaro should store the user's preferences. It can be either 'cookie'
+    // (the default) or 'localStorage'.
+    storageMethod: 'cookie',
+
     // You can customize the name of the cookie that Klaro uses for storing
     // user consent decisions. If undefined, Klaro will use 'klaro'.
     cookieName: 'klaro',
@@ -17,19 +21,28 @@ var klaroConfig = {
     // By default, it will expire after 120 days.
     cookieExpiresAfterDays: 365,
 
-    // You can customize the name of the cookie that Klaro will use to
-    // store user consent. If undefined, Klaro will use 'klaro'.
+    // You can change to cookie domain for the consent manager itself.
+    // Use this if you want to get consent once for multiple matching domains.
+    // If undefined, Klaro will use the current domain.
+    //cookieDomain: '.github.com',
 
     // Put a link to your privacy policy here (relative or absolute).
     privacyPolicy: '/#privacy',
 
     // Defines the default state for applications (true=enabled by default).
-    default: true,
+    default: false,
 
     // If "mustConsent" is set to true, Klaro will directly display the consent
     // manager modal and not allow the user to close it before having actively
     // consented or declines the use of third-party apps.
     mustConsent: false,
+
+    // Show "accept all" to accept all apps instead of "ok" that only accepts
+    // required and "default: true" apps
+    acceptAll: false,
+
+    // replace "decline" with cookie manager modal
+    hideDeclineAll: false,
 
     // You can define the UI language directly here. If undefined, Klaro will
     // use the value given in the global "lang" variable. If that does
@@ -253,6 +266,7 @@ var klaroConfig = {
         {
             name: 'intercom',
             title: 'Intercom',
+            default: true,
             purposes: ['livechat'],
         },
         {
