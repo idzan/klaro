@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {getCookie, getCookies, setCookie, deleteCookie} from 'utils/cookies'
 import stores from 'stores'
 
